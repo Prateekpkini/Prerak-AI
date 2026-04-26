@@ -1,0 +1,121 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@theme {
+  --color-dark-900: #0a0a0f;
+  --color-dark-800: #111119;
+  --color-dark-700: #1a1a25;
+  --color-dark-600: #252535;
+  --color-dark-500: #353548;
+  --color-dark-400: #4a4a62;
+  --color-accent-cyan: #06d6a0;
+  --color-accent-blue: #4cc9f0;
+  --color-accent-purple: #9b5de5;
+  --color-accent-pink: #f15bb5;
+  --color-accent-yellow: #fee440;
+  --color-accent-orange: #ff6b35;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* ── Base ──────────────────────────────────────────────────────────────── */
+body {
+  font-family: var(--font-sans);
+  background: var(--color-dark-900);
+  color: #e4e4eb;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── Glassmorphism Utilities ──────────────────────────────────────────── */
+.glass {
+  background: rgba(17, 17, 25, 0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.glass-strong {
+  background: rgba(26, 26, 37, 0.85);
+  backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ── Glow Effects ─────────────────────────────────────────────────────── */
+.glow-cyan { box-shadow: 0 0 20px rgba(6, 214, 160, 0.15), 0 0 60px rgba(6, 214, 160, 0.05); }
+.glow-purple { box-shadow: 0 0 20px rgba(155, 93, 229, 0.15), 0 0 60px rgba(155, 93, 229, 0.05); }
+.glow-blue { box-shadow: 0 0 20px rgba(76, 201, 240, 0.15), 0 0 60px rgba(76, 201, 240, 0.05); }
+
+.text-glow-cyan { text-shadow: 0 0 20px rgba(6, 214, 160, 0.4); }
+
+/* ── Animated Gradient Background ─────────────────────────────────────── */
+.bg-mesh {
+  background-image:
+    radial-gradient(at 20% 20%, rgba(155, 93, 229, 0.08) 0px, transparent 50%),
+    radial-gradient(at 80% 20%, rgba(6, 214, 160, 0.06) 0px, transparent 50%),
+    radial-gradient(at 50% 80%, rgba(76, 201, 240, 0.05) 0px, transparent 50%);
+}
+
+/* ── Animations ───────────────────────────────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(6, 214, 160, 0.2); }
+  50% { box-shadow: 0 0 40px rgba(6, 214, 160, 0.4), 0 0 80px rgba(6, 214, 160, 0.1); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes score-fill {
+  from { stroke-dashoffset: 283; }
+}
+
+.animate-fade-in-up { animation: fadeInUp 0.6s ease-out forwards; }
+.animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
+.animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+.animate-spin-slow { animation: spin-slow 8s linear infinite; }
+
+.shimmer {
+  background: linear-gradient(90deg, transparent 25%, rgba(255,255,255,0.05) 50%, transparent 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* ── Score Ring ────────────────────────────────────────────────────────── */
+.score-ring-bg { stroke: rgba(255, 255, 255, 0.06); }
+.score-ring-fill {
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Custom Scrollbar ─────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-dark-900); }
+::-webkit-scrollbar-thumb {
+  background: var(--color-dark-500);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--color-dark-400); }
+
+/* ── Task Type Colors ─────────────────────────────────────────────────── */
+.task-workshop { border-left: 3px solid var(--color-accent-purple); }
+.task-blog { border-left: 3px solid var(--color-accent-cyan); }
+.task-social { border-left: 3px solid var(--color-accent-blue); }
+.task-code { border-left: 3px solid var(--color-accent-yellow); }
+.task-community { border-left: 3px solid var(--color-accent-pink); }
+.task-event { border-left: 3px solid var(--color-accent-orange); }
